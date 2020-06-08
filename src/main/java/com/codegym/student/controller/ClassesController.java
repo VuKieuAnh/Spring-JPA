@@ -29,4 +29,6 @@ public class ClassesController {
         modelAndView.addObject("list", students);
         return modelAndView;
     }
+
+
 }

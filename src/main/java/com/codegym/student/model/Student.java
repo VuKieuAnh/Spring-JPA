@@ -9,6 +9,7 @@ public class Student {
     private int id;
     private String name;
     private String address;
+    private String avatar;
 
     @ManyToOne
     private Classes classes;
@@ -40,11 +41,28 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String name, String address, Classes classes) {
+    public Student(int id, String name, String address, String avatar, Classes classes) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.classes = classes;
+        this.avatar = avatar;
+    }
+
+    public Student(String name, String address, String avatar, Classes classes) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.classes = classes;
+        this.avatar = avatar;
+    }
+
+    public Student(String name, String address, String avatar) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.classes = classes;
+        this.avatar = avatar;
     }
 
     public Classes getClasses() {
@@ -53,5 +71,13 @@ public class Student {
 
     public void setClasses(Classes classes) {
         this.classes = classes;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
