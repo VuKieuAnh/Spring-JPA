@@ -52,4 +52,11 @@ public class HomeController {
         studentService.save(student);
         return new ModelAndView("create", "student", new StudentForm());
     }
+
+    @GetMapping("/{id}")
+    public ModelAndView detailStudent(@PathVariable Long id){
+        Student student = studentService.findById(id);
+        return new ModelAndView("detail");
+    }
+
 }

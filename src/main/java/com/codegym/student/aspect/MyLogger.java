@@ -19,4 +19,6 @@ public class MyLogger {
         String strResult = (result == null) ? "[null]" : result.toString();
         System.out.println("[MyLogger] Result: " + strResult);
     }
+
+
 }

@@ -18,7 +18,11 @@ public class StudentService implements IStudentService {
 
     @Override
     public Student findById(Long id) {
-        return null;
+        Student student = studentRepository.findOne(id);
+        if (student != null){
+            return student;
+        }
+        throw new RuntimeException("Không tìm thấy HV có id là "+ id);
     }
 
     @Override
@@ -28,7 +32,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void remove(Long id) {
-
+        studentRepository.delete(id);
     }
 
     @Override
