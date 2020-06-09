@@ -5,12 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/create-customer">Create new customer</a>
+<a href="/student/create">Create new student</a>
 <h1>Customers</h1>
 <table border="1">
     <tr>
         <th>name</th>
         <th>address</th>
+        <th>class</th>
     </tr>
     <th:block th:each="student : ${list}">
         <tr>

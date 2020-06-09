@@ -1,6 +1,7 @@
 package com.codegym.student.config;
 
 //import com.codegym.student.repository.student.StudentRepository;
+import com.codegym.student.aspect.MyLogger;
 import com.codegym.student.service.classes.ClassesService;
 import com.codegym.student.service.classes.IClassesService;
 import com.codegym.student.service.student.IStudentService;
@@ -9,13 +10,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -44,6 +41,7 @@ import java.util.Properties;
 @ComponentScan("com.codegym.student.controller")
 @EnableJpaRepositories("com.codegym.student.repository")
 @PropertySource("classpath:uploadfile.properties")
+@EnableAspectJAutoProxy
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -154,5 +152,10 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         // Image resource.
         registry.addResourceHandler("/i/**") //
                 .addResourceLocations("file:" + fileUpload);
+    }
+
+    @Bean
+    public MyLogger myLogger(){
+        return new MyLogger();
     }
 }
