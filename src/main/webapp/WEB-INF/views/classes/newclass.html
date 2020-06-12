@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //sự kiện nào thực hiện ajax
+            $('#newClases').submit(function(event) {
+                //lấy dữ liệu như thế nào
+                let name = $('#name').val();
+                // chuyển sang dạng json hoặc xml
+                var json = { "name" : name};
+
+                //cú pháp để thực hiện ajax
+                $.ajax({
+
+                    //kiểu dữ liệu mình chuyển lên
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+
+                    //Phương thức
+                    type : "POST",
+                    data: JSON.stringify(json),
+
+                    //tên api
+                    url: "/classes/create",
+
+                    //xử lý khi thành công
+                    success: function(classes) {
+                        //phân tách dữ liệu
+                        let respContent = "";
+                        respContent += "<span class='success'>Classes was created: [";
+                        respContent += classes.name + "]</span>"
+
+                        //hiển thị dữ liệu
+                        $("#result").html(respContent);
+                    }
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<span id="result"></span>
+<form id="newClases" th:object="${newClass}">
+    <table>
+        <tbody>
+
+        <tr>
+            <td>Class name:</td>
+            <td><input th:field="*{name}" name="name" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create" /></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

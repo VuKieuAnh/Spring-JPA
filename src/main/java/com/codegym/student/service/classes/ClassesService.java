@@ -22,7 +22,7 @@ public class ClassesService implements IClassesService {
 
     @Override
     public void save(Classes model) {
-
+        classesRepository.save(model);
     }
 
     @Override
