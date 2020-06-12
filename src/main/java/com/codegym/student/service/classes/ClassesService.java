@@ -27,6 +27,6 @@ public class ClassesService implements IClassesService {
 
     @Override
     public void remove(Long id) {
-
+        classesRepository.delete(id);
     }
 }

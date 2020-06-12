@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //sự kiện nào thực hiện ajax
+            $('.deleteClass').click(function(event) {
+                //lấy dữ liệu
+                //lấy thẻ hiện tại
+                let a = $(this);
+                //lấy giá trị trong thuộc tính href của thẻ
+                let url = a.attr("href");
+                $.ajax({
+                    //Phương thức
+                    type : "DELETE",
+                    //tên api
+                    url: url,
+                    //xử lý khi thành công
+                    success: function(classes) {
+                        //xoa the tr chua class muon xoa
+                        a.parent().parent().remove();
+                    }
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Class</h1>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>edit</th>
+        <th>delete</th>
+    </tr>
+    <th:block th:each="class : ${list}">
+        <tr>
+            <td th:text="${class.getName()}"></td>
+            <td>
+                <a th:href="@{/classes/edit/__${class.getId()}__}">edit</a>
+            </td>
+            <td>
+                <a th:href="@{/classes/__${class.getId()}__}"  class="deleteClass">delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
