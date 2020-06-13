@@ -65,13 +65,13 @@ public class ClassesController {
         return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("")
-    public ModelAndView list(){
-        ModelAndView modelAndView = new ModelAndView("/classes/list");
-        List<Classes> classes = classesService.findAll();
-        modelAndView.addObject("list", classes);
-        return modelAndView;
-    }
+//    @GetMapping("")
+//    public ModelAndView list(){
+//        ModelAndView modelAndView = new ModelAndView("/classes/list");
+//        List<Classes> classes = classesService.findAll();
+//        modelAndView.addObject("list", classes);
+//        return modelAndView;
+//    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Classes> delete(@PathVariable Long id){
         Classes classesFind = classesService.findById(id);
@@ -82,6 +82,10 @@ public class ClassesController {
         return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Classes> allClass(){
+        return classesService.findAll();
+    }
 
 
 
