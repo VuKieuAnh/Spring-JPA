@@ -46,8 +46,6 @@ import java.util.Properties;
 @EnableJpaRepositories("com.codegym.student.repository")
 @PropertySource("classpath:uploadfile.properties")
 @EnableAspectJAutoProxy
-@EnableSpringDataWebSupport
-@EnableTransactionManagement
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 

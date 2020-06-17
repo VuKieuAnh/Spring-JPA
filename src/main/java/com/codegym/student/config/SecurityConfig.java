@@ -60,10 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//            .withUser("user").password("12345").roles("USER")
-//            .and()
-//            .withUser("admin").password("12345").roles("ADMIN");
 
         auth.userDetailsService((UserDetailsService) userService).passwordEncoder(new BCryptPasswordEncoder());
     }

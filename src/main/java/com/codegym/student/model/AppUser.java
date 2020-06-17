@@ -1,5 +1,7 @@
 package com.codegym.student.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -51,4 +53,5 @@ public class AppUser {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }

@@ -1,11 +1,13 @@
 package com.codegym.student.model;
 
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Role {
+public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -33,5 +35,9 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+    @Override
+    public String getAuthority() {
+        return this.name;
     }
 }
