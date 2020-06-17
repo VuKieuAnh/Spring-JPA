@@ -6,6 +6,8 @@ import com.codegym.student.service.classes.ClassesService;
 import com.codegym.student.service.classes.IClassesService;
 import com.codegym.student.service.student.IStudentService;
 import com.codegym.student.service.student.StudentService;
+import com.codegym.student.service.user.IAppUserService;
+import com.codegym.student.service.user.AppUserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -13,10 +15,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -42,6 +46,8 @@ import java.util.Properties;
 @EnableJpaRepositories("com.codegym.student.repository")
 @PropertySource("classpath:uploadfile.properties")
 @EnableAspectJAutoProxy
+@EnableSpringDataWebSupport
+@EnableTransactionManagement
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -97,7 +103,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3308/student?useUnicode=yes&characterEncoding=UTF-8");
+        dataSource.setUrl("jdbc:mysql://localhost:3308/student");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "123456" );
         return dataSource;
@@ -125,6 +131,11 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Bean
     public IClassesService classesService() {
         return new ClassesService();
+    }
+
+    @Bean
+    public IAppUserService userService() {
+        return new AppUserService();
     }
 
     //Config FileUpload

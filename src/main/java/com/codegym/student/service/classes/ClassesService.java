@@ -1,7 +1,7 @@
 package com.codegym.student.service.classes;
 
 import com.codegym.student.model.Classes;
-import com.codegym.student.repository.student.IClassesRepository;
+import com.codegym.student.repository.IClassesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

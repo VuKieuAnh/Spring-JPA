@@ -1,4 +1,4 @@
-package com.codegym.student.repository.student;
+package com.codegym.student.repository;
 
 import com.codegym.student.model.Classes;
 import org.springframework.data.jpa.repository.JpaRepository;
